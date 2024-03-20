@@ -1,7 +1,7 @@
 import { reactive, watchEffect } from "vue";
 
 const key = import.meta.env.VITE_KEY
-const apiUrl = `http://www.omdbapi.com/?apikey=${key}`
+const apiUrl = `https://www.omdbapi.com/?apikey=${key}`
 
 const handleSearch = (movieTitle) => {
     state.searchTerm = movieTitle;
