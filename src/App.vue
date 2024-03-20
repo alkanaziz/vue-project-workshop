@@ -1,65 +1,59 @@
 <script setup>
+import FavoriMovieCard from './components/FavoriMovieCard.vue';
 import Search from './components/Search.vue'
-import { state } from './store.js'
-import { computed } from 'vue';
+import NotFound from './components/NotFound.vue'
+import { ref, computed } from 'vue';
 
-const movies = computed(() => {
-  return state.data;
+const routes = {
+  '/': Search,
+  '/favorites': FavoriMovieCard
+}
+
+const currentPath = ref(window.location.hash)
+
+window.addEventListener('hashchange', () => {
+  currentPath.value = window.location.hash
+})
+
+const currentView = computed(() => {
+  return routes[currentPath.value.slice(1) || '/'] || NotFound
 })
 
 </script>
 
 <template>
-  <div>
-    <Search @search="state.handleSearch" />
-    <div v-if="movies">
-      <ul>
-        <li class="movie" v-for="movie in movies" :key="movie.imdbID">
-          <img :src=movie.Poster alt="movie poster" width="100">
-          <h3>{{ movie.Title }}</h3>
-          <p><span>Type:</span> {{ movie.Type[0].toUpperCase() + movie.Type.slice(1).toLowerCase() }}</p>
-          <p><span>Year:</span> {{ movie.Year }}</p>
-        </li>
-      </ul>
-    </div>
-  </div>
+  <nav>
+    <a href="#/">Search</a>
+    <a href="#/favorites">Favorite Movies</a>
+  </nav>
+  <component :is="currentView" />
 </template>
 
 <style scoped>
-ul {
-  list-style-type: none;
+
+a {
+  text-decoration: none;
+  color: black;
+  border-radius: 5px;
+  background-color: lightgray;
+  padding: 3px 10px;
+  margin: 5px;
+  font-size: 20px;
+  transition: 0.3s;
+}
+
+a:hover {
+  color: lightgray;
+  background-color: #232424;
+}
+
+nav {
+  width: 100vw;
+  height: 50px;
+  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(128,128,128,1) 25%, rgba(128,128,128,1) 75%, rgba(255,255,255,1) 100%);
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
 }
 
-li {
-  width: 300px;
-  margin: 10px;
-  padding: 15px;
-  background-color: #60686c;
-  color: lightgray;
-  border-radius: 25px;
-  transition: 0.5s;
-}
-
-img {
-  width: 250px;
-  height: 350px;
-  border-radius: 25px;
-  transition: 0.5s;
-}
-span {
-  font-weight: bold;
-}
-
-.movie:hover img {
-  scale: 1.03;
-  filter: grayscale(95%);
-}
-
-.movie:hover {
-  background-color: red;
-}
 </style>
