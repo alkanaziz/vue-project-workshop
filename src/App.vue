@@ -30,7 +30,6 @@ const currentView = computed(() => {
 </template>
 
 <style scoped>
-
 a {
   text-decoration: none;
   color: black;
@@ -50,10 +49,11 @@ a:hover {
 nav {
   width: 100vw;
   height: 50px;
-  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(128,128,128,1) 25%, rgba(128,128,128,1) 75%, rgba(255,255,255,1) 100%);
+  background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(128, 128, 128, 1) 25%, rgba(128, 128, 128, 1) 75%, rgba(255, 255, 255, 1) 100%);
   display: flex;
   justify-content: center;
   align-items: center;
+  position: fixed;
+  z-index: 1000;
 }
-
 </style>

@@ -4,28 +4,32 @@ import { computed } from 'vue';
 import HeartFilled from '../assets/HeartFilled.svg'
 
 const favoriteMovies = computed(() => {
-    return state.favoriteMovies;
+  return state.favoriteMovies;
 })
 
 </script>
 
 <template>
-    <div v-if="favoriteMovies">
-        <ul>
-            <li class="movie" v-for="movie in favoriteMovies">
-                <img :src=movie.Poster alt="movie poster" width="100">
-                <h3>{{ movie.Title }}</h3>
-                <div class="movie-info">
-                  <p><span>Type:</span> {{ movie.Type[0].toUpperCase() + movie.Type.slice(1).toLowerCase() }}</p>
-                  <p><span>Year:</span> {{ movie.Year }}</p>
-                  <HeartFilled class="icon" @click="removeFavorite(movie)"/>
-                </div>
-            </li>
-        </ul>
-    </div>
+  <div v-if="favoriteMovies">
+    <ul>
+      <li class="movie" v-for="movie in favoriteMovies">
+        <img :src=movie.Poster alt="movie poster" width="100">
+        <h3>{{ movie.Title }}</h3>
+        <div class="movie-info">
+          <p><span>Type:</span> {{ movie.Type[0].toUpperCase() + movie.Type.slice(1).toLowerCase() }}</p>
+          <p><span>Year:</span> {{ movie.Year }}</p>
+          <HeartFilled class="icon" @click="removeFavorite(movie)" />
+        </div>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <style scoped>
+div {
+  padding-top: 50px;
+}
+
 ul {
   list-style-type: none;
   display: flex;
@@ -71,11 +75,11 @@ span {
 }
 
 .icon {
-    transition: 0.5s;
+  transition: 0.5s;
 }
 
 .icon:hover {
-    scale: 1.3;
-    cursor: pointer;
+  scale: 1.3;
+  cursor: pointer;
 }
 </style>
