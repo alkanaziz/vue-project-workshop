@@ -14,10 +14,11 @@ const movies = computed(() => {
     <Search @search="state.handleSearch" />
     <div v-if="movies">
       <ul>
-        <li v-for="movie in movies" :key="movie.imdbID">
+        <li class="movie" v-for="movie in movies" :key="movie.imdbID">
           <img :src=movie.Poster alt="movie poster" width="100">
           <h3>{{ movie.Title }}</h3>
-          <p>{{ movie.Type }}</p>
+          <p><span>Type:</span> {{ movie.Type[0].toUpperCase() + movie.Type.slice(1).toLowerCase() }}</p>
+          <p><span>Year:</span> {{ movie.Year }}</p>
         </li>
       </ul>
     </div>
@@ -36,7 +37,8 @@ li {
   width: 300px;
   margin: 10px;
   padding: 15px;
-  background-color: gray;
+  background-color: #60686c;
+  color: lightgray;
   border-radius: 25px;
 }
 
@@ -44,5 +46,12 @@ img {
   width: 250px;
   height: 350px;
   border-radius: 25px;
+}
+span {
+  font-weight: bold;
+}
+
+.movie:hover img {
+  scale: 1.03;
 }
 </style>

@@ -26,6 +26,16 @@ input {
   border-radius: 6px;
   border: none;
   margin-bottom: 10px;
+  background-color: lightgray;
+}
+
+::placeholder {
+  color: black;
+  opacity: 1; /* Firefox */
+}
+
+::-ms-input-placeholder { /* Edge 12-18 */
+  color: black;
 }
 
 button {
