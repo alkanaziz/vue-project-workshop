@@ -55,7 +55,7 @@ span {
 }
 
 .movie:hover img {
-  scale: 1.05;
+  scale: 1.03;
   filter: grayscale(95%);
 }
 
