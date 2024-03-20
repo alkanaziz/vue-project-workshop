@@ -1,4 +1,6 @@
 import { reactive, watchEffect } from "vue";
+import { toast } from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
 
 const key = import.meta.env.VITE_KEY;
 const apiUrl = `https://www.omdbapi.com/?apikey=${key}`;
@@ -9,6 +11,27 @@ const state = reactive({
     searchTerm: '',
     favoriteMovies: []
 });
+
+// Vue-Tostify Package
+const removeNotify = () => {
+    toast("The movie has been removed...", {
+        "theme": "dark",
+        "type": "error",
+        "dangerouslyHTMLString": true,
+        autoClose: 1000
+    });
+}
+
+const addNotify = () => {
+    toast("The movie added to favorites", {
+        "theme": "dark",
+        "type": "success",
+        "autoClose": 1000,
+        "transition": "slide",
+        "dangerouslyHTMLString": true
+    });
+}
+
 
 // Favori filmleri localStorage'den al
 function getFavoriteFromLocal() {
@@ -26,6 +49,7 @@ function addFavorite(movie) {
     if (!state.favoriteMovies.some(favorite => favorite.imdbID === movie.imdbID)) {
         state.favoriteMovies.push(movie);
         saveToLocalStorage(state.favoriteMovies);
+        addNotify();
     }
 }
 
@@ -35,6 +59,7 @@ function removeFavorite(movie) {
     if (index !== -1) {
         state.favoriteMovies.splice(index, 1);
         saveToLocalStorage(state.favoriteMovies);
+        removeNotify();
     }
 }
 
