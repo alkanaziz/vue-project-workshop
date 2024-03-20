@@ -1,6 +1,8 @@
 <script setup>
 import { state, addFavorite, removeFavorite } from '../store.js'
 import { computed } from 'vue';
+import Heart from '../assets/Heart.svg'
+import HeartFilled from '../assets/HeartFilled.svg'
 
 const movies = computed(() => {
     return state.data;
@@ -14,12 +16,13 @@ const movies = computed(() => {
             <li class="movie" v-for="movie in movies" :key="movie.imdbID">
                 <img :src=movie.Poster alt="movie poster" width="100">
                 <h3>{{ movie.Title }}</h3>
-                <p><span>Type:</span> {{ movie.Type[0].toUpperCase() + movie.Type.slice(1).toLowerCase() }}</p>
-                <p><span>Year:</span> {{ movie.Year }}</p>
-                <button
-                    @click="state.favoriteMovies.some(favorite => favorite.imdbID === movie.imdbID) ? removeFavorite(movie) : addFavorite(movie)">
-                    {{ state.favoriteMovies.some(favorite => favorite.imdbID === movie.imdbID) ? 'Remove' : 'Add' }}
-                </button>
+                <div class="movie-info">
+                    <p><span>Type:</span> {{ movie.Type[0].toUpperCase() + movie.Type.slice(1).toLowerCase() }}</p>
+                    <p><span>Year:</span> {{ movie.Year }}</p>
+                    <HeartFilled class="icon" v-if="state.favoriteMovies.some(favorite => favorite.imdbID === movie.imdbID)"
+                        @click="removeFavorite(movie)" />
+                    <Heart class="icon" v-else @click="addFavorite(movie)" />
+                </div>
             </li>
         </ul>
     </div>
@@ -61,6 +64,25 @@ span {
 }
 
 .movie:hover {
-    background-color: red;
+  background-color: #813434;
+}
+
+.movie-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon {
+    transition: 0.5s;
+}
+
+.icon:hover {
+    scale: 1.3;
+    cursor: pointer;
+}
+
+.icon:active{
+    scale: 0.9;
 }
 </style>

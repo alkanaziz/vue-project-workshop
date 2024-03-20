@@ -1,12 +1,12 @@
 <script setup>
-import FavoriMovieCard from './components/FavoriMovieCard.vue';
+import FavoriteMovieCard from './components/FavoriteMovieCard.vue';
 import Search from './components/Search.vue'
 import NotFound from './components/NotFound.vue'
 import { ref, computed } from 'vue';
 
 const routes = {
   '/': Search,
-  '/favorites': FavoriMovieCard
+  '/favorites': FavoriteMovieCard
 }
 
 const currentPath = ref(window.location.hash)
