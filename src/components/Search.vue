@@ -21,7 +21,7 @@ const search = () => {
 
 <style scoped>
 input {
-  width: 80vh;
+  width: 15rem;
   height: 25px;
   border-radius: 6px;
   border: none;
