@@ -30,6 +30,7 @@ ul {
   list-style-type: none;
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
 }
 
@@ -40,18 +41,25 @@ li {
   background-color: #60686c;
   color: lightgray;
   border-radius: 25px;
+  transition: 0.5s;
 }
 
 img {
   width: 250px;
   height: 350px;
   border-radius: 25px;
+  transition: 0.5s;
 }
 span {
   font-weight: bold;
 }
 
 .movie:hover img {
-  scale: 1.03;
+  scale: 1.05;
+  filter: grayscale(95%);
+}
+
+.movie:hover {
+  background-color: red;
 }
 </style>
