@@ -10,7 +10,7 @@ const favoriteMovies = computed(() => {
 </script>
 
 <template>
-  <div v-if="favoriteMovies">
+  <div v-if="favoriteMovies.length">
     <ul>
       <li class="movie" v-for="movie in favoriteMovies">
         <img :src=movie.Poster alt="movie poster" width="100">
@@ -23,11 +23,18 @@ const favoriteMovies = computed(() => {
       </li>
     </ul>
   </div>
+  <div class="emptyMessage" v-else>
+    <p>Your favorite list is empty.</p>
+  </div>
 </template>
 
 <style scoped>
 div {
   padding-top: 50px;
+}
+
+.emptyMessage {
+  padding-top: 100px;
 }
 
 ul {
