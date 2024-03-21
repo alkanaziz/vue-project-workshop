@@ -10,7 +10,7 @@ const favoriteMovies = computed(() => {
 </script>
 
 <template>
-  <div v-if="favoriteMovies.length">
+  <div class="favoriteMovies" v-if="favoriteMovies.length">
     <ul>
       <li class="movie" v-for="movie in favoriteMovies">
         <img :src=movie.Poster alt="movie poster" width="100">
@@ -29,7 +29,7 @@ const favoriteMovies = computed(() => {
 </template>
 
 <style scoped>
-div {
+.favoriteMovies {
   padding-top: 50px;
 }
 
