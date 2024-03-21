@@ -37,8 +37,8 @@ The project structure is as follows:
 
 - `public`: Contains static assets that will be served directly.
 - `src`: Contains the main source code of the application.
+  - `assets`: Contains svg-icons.
   - `components`: Contains reusable Vue components.
-  - `views`: Contains the main views of the application.
   - `App.vue`: The root component of the application.
   - `main.js`: The entry point of the application.
 
