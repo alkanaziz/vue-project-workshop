@@ -41,6 +41,7 @@ The project structure is as follows:
   - `components`: Contains reusable Vue components.
   - `App.vue`: The root component of the application.
   - `main.js`: The entry point of the application.
+  - `store.js`: The Vuex store of the application.
 
 ## Packages Used
 
